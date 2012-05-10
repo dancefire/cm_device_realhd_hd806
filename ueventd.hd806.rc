@@ -1,0 +1,30 @@
+# Camera
+/dev/video0               0660   root       camera
+/dev/video1               0660   root       camera
+/dev/video2               0660   root       camera
+
+# sysfs properties
+/sys/devices/virtual/usb_composite/*   enable      0664  root   system
+
+# Amlogic AV streaming devices
+/dev/amvideo              0666   system     system
+/dev/amstream_sub         0666   system     system
+/dev/amstream_rm          0666   system     system
+/dev/amstream_mpps        0666   system     system
+/dev/amstream_mpts        0666   system     system
+/dev/amstream_abuf        0666   system     system
+/dev/amstream_vbuf        0666   system     system
+/dev/audiodsp0            0666   system     system
+/dev/uio0                 0666   system     system
+/dev/amjpegdec            0666   system     system
+
+# Mali
+/dev/ump                  0666   system     graphics
+/dev/mali                 0666   system     graphics
+
+#gps
+/dev/ttyS1                0666	 system     system
+/dev/ttya0                0666	 system     system
+/dev/ttya1                0666	 system     system
+/dev/ptya0                0666	 system     system
+/dev/ptya1                0666	 system     system

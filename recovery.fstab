@@ -3,8 +3,8 @@
 /boot       mtd         boot
 /cache      yaffs2      cache
 /data       yaffs2      userdata
-/misc       mtd         misc
 /recovery   mtd         recovery
-/sdcard     vfat        /dev/block/mmcblk0p1        /dev/block/mmcblk0
+/sdcard     vfat        /dev/block/cardblksd1        /dev/block/cardblksd
 /system     yaffs2      system
-/sd-ext     ext4        /dev/block/mmcblk0p2
+/udisk      vfat        /dev/block/sda1
+
