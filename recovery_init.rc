@@ -41,7 +41,7 @@ service ueventd /sbin/ueventd
 service remotecontrol /sbin/remotecfg /etc/remote.conf
     oneshot
 
-service console /sbin/sh
+service console /sbin/sh -l
     console
     
 # patch to set screen size

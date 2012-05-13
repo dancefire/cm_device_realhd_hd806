@@ -32,6 +32,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/realhd/hd806/prebuilt/remotecfg:recovery/root/sbin/remotecfg \
     device/realhd/hd806/prebuilt/set_display_mode.sh:recovery/root/sbin/set_display_mode.sh \
+    device/realhd/hd806/prebuilt/etc/remote.conf:recovery/root/etc/remote.conf \
+    device/realhd/hd806/prebuilt/etc/profile:recovery/root/etc/profile \
     device/realhd/hd806/ueventd.hd806.rc:recovery/root/ueventd.hd806.rc \
     device/realhd/hd806/prebuilt/initlogo.480p.rle:recovery/root/initlogo.480p.rle \
     device/realhd/hd806/prebuilt/initlogo.720p.rle:recovery/root/initlogo.720p.rle \
