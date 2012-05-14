@@ -18,6 +18,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
 
 PRODUCT_COPY_FILES += \
+    device/realhd/hd806/prebuilt/init.hd806.rc:root/init.hd806.rc \
     device/realhd/hd806/prebuilt/ueventd.hd806.rc:root/ueventd.hd806.rc \
     device/realhd/hd806/prebuilt/initlogo.480p.rle:root/initlogo.480p.rle \
     device/realhd/hd806/prebuilt/initlogo.720p.rle:root/initlogo.720p.rle \

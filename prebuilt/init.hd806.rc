@@ -1,0 +1,250 @@
+on early-init
+    # setup logo file for different resolution
+    symlink /initlogo.480p.rle /initlogo.480i.rle
+    symlink /initlogo.1080p.rle /initlogo.1080i.rle
+    symlink /initlogo.480p.rle /initlogo.576p.rle
+    symlink /initlogo.480p.rle /initlogo.576i.rle
+
+    write /sys/class/graphics/fb0/blank 0
+    write /sys/class/graphics/fb1/blank 1
+    insmod /boot/ump.ko ump_debug_level=2
+    insmod /boot/mali.ko mali_debug_level=2
+
+on init
+
+# setup the global environment
+    export INTERNAL_STORAGE /data/internal-device
+    export INTERNAL_STORAGE_STATE mounted
+
+# Make /system/etc/firmware writable for easier upgrade/install
+    mkdir /system/etc/firmware
+    chmod 0777 /system/etc/firmware
+
+    mkdir /data/misc/wifi/sockets 0770 wifi wifi
+    chmod 0777 /etc/ppp
+
+    # BlueTooth
+    chmod 0777 /sys/class/rfkill/rfkill0/state
+    write /sys/class/rfkill/rfkill0/state 0
+    
+    mkdir /data/internal-device 0770 system system
+    mkdir /data/internal-device/Android 0770 system system
+    mkdir /data/internal-device/DCIM 0770 system system
+    mkdir /data/internal-device/Android/data
+    chmod 0777 /data/internal-device
+    chmod 0777 /data/internal-device/Android
+    chmod 0777 /data/internal-device/DCIM
+    chmod 0777 /data/internal-device/Android/data   
+
+    mkdir /dev/console
+
+on boot
+    setprop wifi.interface wlan0
+    
+    # HDMI/LCD switch
+    chmod 0777 /sys/class/display/mode 
+    chmod 0777 /sys/class/display/axis
+    chmod 0777 /sys/class/graphics/fb0/scale 
+    chmod 0777 /sys/class/graphics/fb1/scale 
+    chmod 0777 /sys/class/amhdmitx/amhdmitx0/disp_mode
+    # Free scale
+    chmod 0666 /sys/class/graphics/fb0/free_scale		
+    chmod 0666 /sys/class/graphics/fb0/scale_width
+    chmod 0666 /sys/class/graphics/fb0/scale_height
+    chmod 0666 /sys/class/graphics/fb0/free_scale_axis
+    chmod 0666 /sys/class/graphics/fb1/free_scale
+    chmod 0666 /sys/class/graphics/fb1/scale_width
+    chmod 0666 /sys/class/graphics/fb1/scale_height 
+    
+    setprop rw.fb.need2xscale ok
+    chmod 0777 /sys/class/graphics/fb0/scale_axis
+    chmod 777 /sys/class/display/wr_reg
+
+# create dhcpcd dir
+    mkdir /data/misc/dhcp 0770 dhcp dhcp
+    chmod 0770 /data/misc/dhcp
+
+
+
+    chmod 0666 /sys/class/tsync/pts_video
+    chmod 0666 /sys/class/tsync/pts_audio
+    chmod 0666 /sys/class/tsync/pts_pcrscr
+    chmod 0666 /sys/class/tsync/event
+    chmod 0666 /sys/class/tsync/mode
+    chmod 0666 /sys/class/tsync/enable
+    chmod 0666 /sys/class/graphics/fb0/blank
+    chmod 0666 /sys/class/graphics/fb0/order
+    chmod 0666 /sys/class/graphics/fb1/blank
+    chmod 0666 /sys/class/graphics/fb1/order
+
+    chmod 0666 /sys/class/video/blackout_policy
+    chmod 0666 /sys/class/video/screen_mode
+    chmod 0666 /sys/class/video/axis
+    chmod 0666 /sys/class/video/disable_video
+
+    chmod 0666 /dev/amstream_sub_read
+
+    chmod 0666 /sys/class/subtitle/enable
+    chmod 0666 /sys/class/subtitle/total
+    chmod 0666 /sys/class/subtitle/width
+    chmod 0666 /sys/class/subtitle/height
+    chmod 0666 /sys/class/subtitle/type
+    chmod 0666 /sys/class/subtitle/curr
+    chmod 0666 /sys/class/subtitle/size
+    chmod 0666 /sys/class/subtitle/data
+    chmod 0666 /sys/class/subtitle/startpts
+    chmod 0666 /sys/class/subtitle/fps
+    chmod 0666 /sys/class/subtitle/subtype
+    chmod 0666 /dev/dvb0.frontend0
+    chmod 0666 /dev/dvb0.demux0
+    chmod 0666 /dev/dvb0.demux1
+    chmod 0666 /dev/dvb0.demux2
+    chmod 0666 /dev/dvb0.dvr0
+    chmod 0666 /dev/dvb0.dvr1
+    chmod 0666 /dev/dvb0.dvr2
+    chmod 0666 /sys/class/stb/demux0_source
+    chmod 0666 /sys/class/stb/demux1_source
+    chmod 0666 /sys/class/stb/demux2_source
+    chmod 0666 /sys/class/stb/source
+    chmod 0666 /sys/class/stb/asyncfifo0_source
+    chmod 0666 /sys/class/stb/asyncfifo1_source
+    chmod 0666 /sys/class/stb/video_pts
+    chmod 0666 /sys/class/stb/audio_pts
+    
+    chmod 0777 /system/bin/hciattach_usi
+
+
+    chmod 0666 /dev/ge2d
+    chmod 0666 /dev/dvb0.frontend0
+    chmod 0666 /dev/dvb0.demux0
+    chmod 0666 /dev/dvb0.demux1
+    chmod 0666 /dev/dvb0.demux2
+    chmod 0666 /dev/dvb0.dvr0
+    chmod 0666 /dev/dvb0.dvr1
+    chmod 0666 /dev/dvb0.dvr2
+    chmod 0666 /sys/class/stb/demux0_source
+    chmod 0666 /sys/class/stb/demux1_source
+    chmod 0666 /sys/class/stb/demux2_source
+    chmod 0666 /sys/class/stb/source
+    chmod 0666 /sys/class/stb/asyncfifo0_source
+    chmod 0666 /sys/class/stb/asyncfifo1_source
+    chmod 0666 /sys/class/stb/video_pts
+    chmod 0666 /sys/class/stb/audio_pts
+    chmod 0666 /sys/class/tsync/pcr_recover
+
+    chmod 0666 /sys/module/deinterlace/parameters/deinterlace_mode
+
+    # CPU scaling
+    chmod 777 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+    chmod 666 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+
+    # Set CPU scaling policy to conservative
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor conservative
+    chmod 666 /sys/devices/system/cpu/cpu0/cpufreq/conservative/freq_step
+    write /sys/devices/system/cpu/cpu0/cpufreq/conservative/freq_step 20
+
+    # patch
+#    write /sys/power/wake_lock true
+
+service console /system/bin/sh
+    console
+#    disabled
+
+#on property:ro.secure=0
+#    start console
+
+# patch to set screen size
+service display /system/bin/logwrapper /system/bin/set_display_mode.sh 720p
+    oneshot
+
+service display_reset /system/bin/reset_display_mode.sh
+    disabled
+    oneshot
+
+
+service remotecfg /system/bin/remotecfg /system/etc/remote.conf
+    oneshot
+
+service servicemanager /system/bin/servicemanager
+    user system
+    critical
+    onrestart restart zygote
+    onrestart restart media
+    # patch
+    oneshot
+
+service vold /system/bin/vold
+    socket vold stream 0660 root mount
+    ioprio be 2
+    # patch
+    oneshot
+	
+service netd /system/bin/netd
+    socket netd stream 0660 root system
+    # patch
+    oneshot
+
+service debuggerd /system/bin/debuggerd
+    # patch
+    oneshot
+
+service ril-daemon /system/bin/rild
+    socket rild stream 660 root radio
+    socket rild-debug stream 660 radio system
+    user root
+    group radio cache inet misc audio sdcard_rw net_admin net_raw qcom_oncrpc diag
+    # patch
+    oneshot
+
+service zygote /system/bin/app_process -Xzygote /system/bin --zygote --start-system-server
+    socket zygote stream 660 root system
+    onrestart write /sys/android_power/request_state wake
+    onrestart write /sys/power/state on
+    onrestart restart media 500000
+    onrestart restart netd
+    # patch
+    #oneshot
+
+
+service flash_recovery /system/etc/install-recovery.sh
+    oneshot
+
+
+service dumpstate /system/bin/dumpstate -s
+    socket dumpstate stream 0660 shell log
+    disabled
+    oneshot
+
+service wpa_supplicant /system/bin/wpa_supplicant -Dwext -iwlan0 -d -c /data/misc/wifi/wpa_supplicant.conf
+    socket wpa_wlan0 dgram 0666 wifi wifi
+    group system wifi
+    disabled
+    oneshot
+
+service dhcpcd_eth0 /system/bin/dhcpcd -d -f /system/etc/dhcpcd/dhcpcd.conf -B
+    group dhcp system
+    disabled
+    oneshot
+
+service dhcpcd_wlan0 /system/bin/dhcpcd -d -f /system/etc/dhcpcd/dhcpcd.conf -B
+    group dhcp system
+    disabled
+    oneshot
+
+service pppoe_wrapper /system/bin/pppoe_wrapper
+    group system system
+    oneshot
+
+service smbd /system/bin/smbd
+    oneshot
+service hciattach /system/bin/ls /dev/null 
+		user root 
+		group bluetooth net_bt_admin 
+		disabled
+		oneshot 
+
+service remote_control /system/bin/remote_control
+    user root
+    group system
+    socket remote_control_event stream 666 root system
+    socket remote_control_sensor stream 666 root system
