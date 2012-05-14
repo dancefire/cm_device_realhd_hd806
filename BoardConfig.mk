@@ -25,7 +25,7 @@ USE_OPENGL_RENDERER := true
 
 BOARD_USE_SKIA_LCDTEXT := true
 
-TARGET_RECOVERY_INITRC := device/realhd/hd806/recovery_init.rc
+TARGET_RECOVERY_INITRC := device/realhd/hd806/recovery/recovery_init.rc
 #TARGET_RECOVERY_PRE_COMMAND := ""
 #TARGET_RECOVERY_PIXEL_FORMAT := ""
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/realhd/hd806/recovery/recovery_ui.c
